@@ -1,13 +1,25 @@
-with open("export1.csv", "r") as f:
-  lines = f.readlines()
+import pandas as pd
 
-izq_list = ""
-for i in range(5):
-  x = str(lines[i].split("@healthpromed.org"))
-  izq_list += x
+df = pd.read_csv("export.csv", skiprows=1)
 
-print(izq_list)
+df2 = pd.read_csv("prueba_usuarios.csv")
 
-with open("usernames.csv", "w") as users:
-  users.write(izq_list)
-  users.close
+df["username"] = df["mail"]
+
+# df["username"] = df["username"].str.replace("@healthpromed.org", "")
+
+df["username"] = df["username"].str[:-17]
+
+df2.rename(columns={"E-Mail Address":"mail"}, inplace=True)
+df2.rename(columns={"First Name":"firstname"}, inplace=True)
+df2.rename(columns={"Last Name":"lastname"}, inplace=True)
+
+df = df[["mail", "username"]]
+
+df_merge = pd.merge(df, df2, on="mail")
+
+df_merge.rename(columns={"mail":"email"}, inplace=True)
+
+df_merge = df_merge[["username", "firstname", "lastname", "email"]]
+
+df_merge.to_csv("exported_users.csv", index=False)
