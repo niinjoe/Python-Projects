@@ -1,4 +1,4 @@
-with open('dir.txt') as f:
+with open("dir.txt") as f:
     lines = f.readlines()
 
 # der_list = ""
@@ -14,7 +14,9 @@ with open('dir.txt') as f:
 
 der_list = ""
 for i in range(len(lines)):
-  line = lines[i][40:]; der_list += line
+    line = lines[i][40:]
+    der_list += line
 
 with open("new_dir.txt", "w") as txt:
-  txt.write(der_list); txt.close
+    txt.write(der_list)
+    txt.close
