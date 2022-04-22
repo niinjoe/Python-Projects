@@ -1,4 +1,3 @@
-from unittest import skip
 import pandas as pd
 
 df = pd.read_excel("Reporte Vacunados por dia.xlsx", skiprows=2)
@@ -11,9 +10,9 @@ df = df[df["Visit Status"].isin(visit) == True]
 dups = df.pivot_table(columns=["Appointment Date"], aggfunc='size')
 
 df2 = dups.reset_index()
+df2.columns = df2.columns.str.replace("0", "Conteo Total")
+df2.rename(columns={df2.columns[1]: "Conteo Total"})
 
-# df2.columns = ["Appointment Date", "Count"]
+# df2.to_excel("Reporte Vacunados por dia_SUM.xlsx", index=False)
 
-# df2.to_excel("test.xlsx", index=False)
-
-print(df.head())
+print(df2.head())
