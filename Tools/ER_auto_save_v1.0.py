@@ -11,6 +11,3 @@ shutil.copytree(save_file_src, save_file_dest, dirs_exist_ok=True)
 
 # Elden Ring installation path
 subprocess.Popen("C:\\Path\\To\\Elden Ring.exe")
-
-print("Task Executed Successfully")
-exit
