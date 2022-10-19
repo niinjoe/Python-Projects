@@ -38,4 +38,20 @@ for word in seq:
     if word[0] != "s":
         seq.remove(word)
 
-print(seq)
+# print(seq)
+
+def caught_speeding(speed, is_birthday):
+    limit = 0
+    if is_birthday == True:
+      limit = 5
+    else:
+      limit = 0
+    if speed <= 60+limit:
+      return "No Ticket"
+    elif speed >= 81+limit:
+      return "Big Ticket"
+    elif speed >= 61+limit:
+      return "Small Ticket"
+
+x = caught_speeding(81, True)
+print(x)
